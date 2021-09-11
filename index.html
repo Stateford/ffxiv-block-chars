@@ -1,49 +1,537 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <title>FFXIV Block Letters</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="stylesheet.css"/>
-        <script src="index.js"></script>
-    </head>
-    <body class="bg-dark">
-        <header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
-            <div class="container-fluid d-flex align-items-center">
-                <h1 class="d-flex align-items-center fs-4 text-white mb-0">
-                    <!-- TODO: add image here -->
-                    <!-- <img src="/docs/5.1/assets/brand/bootstrap-logo-white.svg" width="38" height="30" class="me-3" alt="Bootstrap"> -->
-                    FFXIV Block Character Translator
-                </h1>
-            </div>
-        </header>
 
-        <div class="block-content">
-            <div class="container-flud bg-body">
-                <section id="content">
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-md-4">
-                                <label for="translate-eng" class="form-label"></label>
-                                <input type="text" name="" id="translate-eng" class="form-control">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="translate-block" class="form-label"></label>
-                                <input type="text" name="" id="translate-block" class="form-control">
-                            </div>
-                        </div>
-                        <div class="row g-3">
-                            <div class="col-md-4">
-                                <input type="button" value="Translate" class="btn btn-primary" id="translate-btn">
-                                <input type="button" value="Clear" class="btn btn-danger" id="clear-btn">
-                                <!-- <button class="btn btn-primary" id="translate-btn">Translate</button> -->
-                                <!-- <button class="btn btn-danger" id="clear-btn">Clear</button> -->
-                            </div>
-                        </div>
-                    </form>
-                </section>
-            </div>
+<!-- HEAD  -->
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <!-- local sheets -->
+  <link rel="stylesheet" href="stylesheet.css" type="text/css" />
+  <script src="index.js"></script>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli" />
+  <title>FFXIV Block Letters</title>
+
+</head>
+
+<!-- BODY -->
+
+<body style="background-color: black;">
+  <div class="container justify-content-center">
+    <div class="block-content">
+      <div class="row">
+        <header>
+          <!-- Header row -->
+          <div class="col">
+            <h1 id="title">
+              <!-- TODO: add image here -->
+              <!-- <img src="/docs/5.1/assets/brand/bootstrap-logo-white.svg" width="38" height="30" class="me-3" alt="Bootstrap"> -->
+              FFXIV Block Character Translator
+            </h1>
+          </div>
+        </header>
+      </div>
+
+      <div class="row">
+        <!-- Description row -->
+        <div class="col description">
+          Please type the text you would like block-ified in the input box below. The output will look very weird, but
+          once you copy and paste it in-game it will all make sense.
         </div>
-    </body>
+      </div>
+
+      <div class="row">
+        <!-- Main body row -->
+
+
+        <!-- TODO: Chat channel functionality-->
+        <div class="row" style="display: none;">
+          <!-- Daddy chat channels-->
+
+          <div class="col-sm-12 description" style="text-align: center;">
+            <span style="font-weight: bold;">Want to set up channel chat macros?</span>
+            You can only select up to 15 at a time.
+          </div>
+
+          <div class="d-flex justify-content-around align-self-center">
+
+            <div class="row">
+              <!-- main channels row-->
+              <div class="col" style="margin-bottom: 5px;">
+                <span style="text-decoration: underline;">General channels</span>
+
+                <!-- general channels -->
+                <div class="row">
+
+                  <div class="col-3 channelLabel">
+                    <span class="align-middle">Party</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="partyChat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">Shout</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="shoutChat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+                </div>
+
+                <!-- yell and say -->
+                <div class="row">
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">Yell</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="yellChat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">Say</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="sayChat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+                </div>
+
+                <!-- echo -->
+                <div class="row">
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">Echo</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="echoChat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+                </div>
+
+                <!-- fc -->
+                <div class="row">
+
+                  <div class="col-9 channelLabel">
+
+                    <span class="align-middle">Free Company</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="fcChat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+                </div>
+
+                <!-- nn -->
+                <div class="row">
+
+                  <div class="col-9 channelLabel">
+
+                    <span class="align-middle">Novice Network</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="nnChat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+                </div>
+
+              </div>
+              <!-- end main channels row -->
+
+            </div>
+          </div>
+          <div class="d-flex justify-content-around align-self-center">
+
+            <!-- Channels row-->
+            <div class="row">
+
+              <!-- ls channels row-->
+              <div class="col" style="margin-bottom: 5px;">
+                <span style="text-decoration: underline;">Linkshells</span>
+
+                <!-- Linkshell channels -->
+
+
+                <!-- Linkshell Channels -->
+                <!-- L1 L5 -->
+                <div class="row">
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">L1</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="l1Chat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">L5</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="l5Chat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+                </div>
+
+                <!-- L2 L6 -->
+                <div class="row">
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">L2</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="l2Chat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">L6</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="l6Chat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+                </div>
+
+
+                <!-- L3 L7 -->
+                <div class="row">
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">L3</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="l3Chat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">L7</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="l7Chat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+                </div>
+
+
+                <!-- L4 L8 -->
+                <div class="row">
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">L4</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="l4Chat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">L8</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="l8Chat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- end Linkshell channels row -->
+            </div>
+          </div>
+          <div class="d-flex justify-content-around align-self-center">
+
+            <!-- Channels row-->
+            <div class="row">
+              <!-- cwls channels row-->
+              <div class="col" style="margin-bottom: 5px;">
+                <span style="text-decoration: underline;">Crossworld Linkshells</span>
+
+                <!-- Crowssworld Linkshell channels -->
+
+                <!-- CWL1 CWL5 -->
+                <div class="row">
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">CWL1</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="cwl1Chat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">CWL5</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="cwl5Chat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+                </div>
+
+                <!-- CWL2 CWL6 -->
+                <div class="row">
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">CWL2</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="cwl2Chat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">CWL6</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="cwl6Chat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+                </div>
+
+
+                <!-- CWL3 CWL7 -->
+                <div class="row">
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">CWL3</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="cwl3Chat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">CWL7</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="cwl7Chat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+                </div>
+
+
+                <!-- L4 L8 -->
+                <div class="row">
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">CWL4</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="cwl4Chat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+
+                  <div class="col-3 channelLabel">
+
+                    <span class="align-middle">CWL8</span>
+                  </div>
+                  <div class="col-3">
+                    <label class="switch">
+                      <input type="checkbox" id="cwl8Chat" value="false" class="chatToggle">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+
+                </div>
+
+              </div>
+              <!-- end Crossworld Linkshell channels row -->
+
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-around">
+          <!-- Button row-->
+          <div class="row">
+            <div class="col">
+              <!-- Translate button -->
+              <input type="button" value="Translate" class="btn" id="translate-btn" />
+            </div>
+            <div class="col">
+              <!-- Clear button -->
+              <input type="button" value="Clear" class="btn" id="clear-btn" />
+              <!-- <button class="btn btn-primary" id="translate-btn">Translate</button> -->
+              <!-- <button class="btn btn-danger" id="clear-btn">Clear</button> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="col-sm-12 description" style="text-align: center;">
+            <span style="font-weight: bold;">More coming soon!</span><br>
+            Stay tuned for new features, and get the latest updates on what's going on at the <a style="color:cadetblue"
+              href="https://github.com/Stateford/ffxiv-block-chars">GitHub page</a>! <p></p>If you notice any problems,
+            please let us know by creating an Issue.
+            <p></p>
+            <a class="github-button" href="https://github.com/Stateford/ffxiv-block-chars/subscription"
+              data-icon="octicon-eye" data-size="large" data-show-count="true"
+              aria-label="Watch Stateford/ffxiv-block-chars on GitHub">Watch</a>
+            <!-- Place this tag where you want the button to render. -->
+            <a class="github-button" href="https://github.com/Stateford/ffxiv-block-chars/issues"
+              data-icon="octicon-issue-opened" data-size="large" data-show-count="true"
+              aria-label="Issue Stateford/ffxiv-block-chars on GitHub">Issue</a>
+          </div>
+
+          <div class="col-sm-12" style="display: none;">
+            <br>
+            <button class="btn" type="button" data-toggle="collapse" data-target="#collapseExample"
+              aria-expanded="false" aria-controls="collapseExample">
+              Want to see a list of available special characters?
+            </button>
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body" style="border-radius: 20px; color: #2f2f2f;">
+                Coming soon!
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-6">
+          <!-- Input/Output Column -->
+          <div class="row">
+
+            <div class="col-12" style="margin-top: 10px;">
+              <!-- Input column -->
+              <h3><label for="translate-eng" class="form-label">
+                  Input
+                </label></h3>
+              <textarea rows="8" id="translate-eng" class="form-control"></textarea>
+            </div>
+
+            <div class="col" style="margin-top: 10px;">
+              <!-- Output column -->
+              <h3>
+                <label for="translate-block" class="form-label">
+                  Output
+                </label>
+              </h3>
+              <textarea readonly rows="8" id="translate-block" class="form-control readonly"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- FOOTER -->
+      <footer>
+        <div class="row" id="footer">
+          <div class="col">
+            Credits: Chelsea Chelsea @ Hyperion | Althaia Waeth @ Adamantoise
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+
 </html>

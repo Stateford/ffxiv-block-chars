@@ -1,0 +1,151 @@
+body {
+    color: #eeeeee;
+  }
+  h1 {
+    font-family: Muli;
+    font-size: 44px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: bold;
+  }
+  h3 {
+    font-family: Muli;
+    font-size: 30px;
+    font-style: normal;
+    font-variant: normal;
+  }
+  p {
+    font-family: Muli;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+  }
+  blockquote {
+    font-family: Muli;
+    font-size: 21px;
+    font-style: normal;
+    font-variant: normal;
+  }
+  pre {
+    font-family: Muli;
+    font-size: 13px;
+    font-style: normal;
+    font-variant: normal;
+  }
+  
+  .block-content {
+    background: #373737;
+    box-shadow: 8px 16px 32px #0000001a;
+    border-radius: 24px;
+    padding: 20px;
+    top: 10%;
+    left: 10%;
+    right: 10%;
+    position: absolute;
+    max-width: 920px;
+    min-width: 920px;
+    height: 840px;
+  }
+  #body {
+    padding: 20px;
+  }
+  
+  #footer {
+    margin-top: 5%;
+    text-align: center !important;
+    vertical-align: bottom;
+  }
+  .description {
+    margin: 10px;
+  }
+  
+  .form-control {
+    margin: 5px;
+    border: 0px;
+    background: #2f2f2f;
+    border-radius: 12px;
+    min-height: 200px;
+    color: #fff3c7;
+  }
+  .btn {
+    background: #fff3c7 0% 0% no-repeat padding-box;
+    margin: 5px;
+    padding: 10px 15px;
+    border: 0px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: all 0.1s;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background-color: #f8d453;
+  }
+  
+  /* The switch - the box around the slider */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 18px;
+    vertical-align: middle;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #5d5d5d;
+    transition: 0.4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #fff3c7;
+    transition: 0.4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #f8d453;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 2px #fff;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(12px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 17px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  
+  .channelLabel {
+    font-size: 14px;
+    padding-right: 0px;
+  }
+  .readonly {
+    background-color: #5d5d5d !important;
+  }
+  
