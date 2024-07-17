@@ -48,7 +48,12 @@ document.onreadystatechange = () => {
 
         document.querySelector("#translate-btn").addEventListener("click", (event) => {
             const english_text = english_text_box.value.toLowerCase();
-            target_block_text_box.value = [...english_text].map((char) => ffxiv_block_chars[char]).join("");
+            target_block_text_box.value = [...english_text].map((char) => {
+                if(char in ffxiv_block_chars){
+                    return ffxiv_block_chars[char];
+                }
+                return char;
+            }).join("");
         });
     }
 };
